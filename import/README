@@ -1,0 +1,8 @@
+The import scripts in this directory generate the JSON files that are
+needed for the asset generation for the Go libraries (c.f. /assets/README).
+
+The scripts expect the current working directory to be /import/ and
+send output to stdout. All data required for the import process is in /import/data/.
+
+The source for the Sheet ID to Name mapping is http://www.3025-game.de/special/sheetid.php?lang=en
+The source for the material stats is http://ballisticmystix.net/?p=resources

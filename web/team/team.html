@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Team</title>
+    <style type="text/css" media="screen">
+      label {
+        display: block;
+        font-weight: bold;
+        float: left;
+        width: 15em;
+      }
+
+      input {
+        display: block;
+      }
+
+      body {
+        background-color: #e5ffc4;
+      }
+
+      form {
+        overflow: auto;
+      }
+
+      form, #results {
+        border: 5px solid #b1c984;
+        background-color: #444f36;
+        padding: 5px;
+        color: white;
+      }
+
+      #results {
+        margin-top: 5px;
+      }
+
+      a, a:visited {
+        color: cyan;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form method="get">
+      <label for='input_team_size'>Size of team:</label>
+      <input type="number" min="1" max="9" id='input_team_size' name="team_size" value="{{.TeamSize}}" />
+
+      <label for='input_highest_skill'>Highest skill in use:</label>
+      <input type="number" min="1" max="250" id='input_highest_skill' name="highest_skill" value="{{.HighestSkill}}" />
+
+      <label for='input_minimum_xp'>Minimum XP per kill:</label>
+      <input type="number" min="1" id='input_minimum_xp' name="minimum_xp" value="{{.MinimumXP}}" />
+
+      <label for='input_mobs'>Space-separated list of mobs:</label>
+      <input type="text" id='input_mobs' name="mobs" required="required" value="{{.Mobs}}" />
+
+      <input type="submit" />
+    </form>
+
+
+    <div id='results'>
+      {{range .Plans}}
+      <h2>{{.Mob}}</h2>
+      <ol>
+        {{range .Units}}
+        <li>
+          {{.Creature.Level.Level}} ({{.Creature.Level.Name}}) - Lasts for {{.Levels}} levels - roughly {{.MinKills}}-{{.MaxKills}} kills per level (starting at
+          {{if .Capped}}
+          3000
+          {{else}}
+          {{.StartingXP}}
+          {{end}}
+          ({{.StartingXP}}) XP) (<a href="http://chart.apis.google.com/chart?chxl=1:|0|1|2|3|4|5|6|7|8|9
+          &chxp=1,0,1,2,3,4,5,6,7,8,9&chxr=0,0,3000|1,0,10&chxs=0,676767,11.5,0,lt,676767|1,676767,12.5,-0.5,lt,676767&chxt=y,x&chs=800x200&cht=lc&chco=0000FF,FF9900&chds=5,3050,0,3050&chd=t:{{.LevelProgression}}|_,{{.SizeProgression}},_&chdl=per+level+advancement+(0+=+current+level)|per+team+size+(at+your+current+level)&chg=14.3,-1,1,1&chls=1,4,0|1,9,0&chm=B,C5D4B5BB,0,0,0|B,AFB3FF54,1,0,0&chtt=XP+per+kill&chts=676767,10.5">Display graph</a>)
+        </li>
+        {{end}}
+      </ol>
+      {{end}}
+    </div>
+    <script src="//static.getclicky.com/js" type="text/javascript"></script>
+    <script type="text/javascript">try{ clicky.init(66584423); }catch(e){}</script>
+    <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66584423ns.gif" /></p></noscript>
+  </body>
+</html>

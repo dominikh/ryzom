@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title></title>
+    <script type="text/javascript" src="/jquery.js"></script>
+    <script type="text/javascript" src="/inventory.js"></script>
+    <style type="text/css" media="screen">
+      html * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      body {
+        background-color: #e5ffc4;
+      }
+
+      a, a:visited {
+        color: cyan;
+      }
+
+      #incremental_filter_label {
+        display: block;
+      }
+
+      .inventory, .filters, .inventory_selector, .api_key {
+        border: 5px solid #b1c984;
+        background-color: #444f36;
+        padding: 5px;
+        color: white;
+      }
+
+      .inventory_selector {
+        margin-top: 1%;
+      }
+
+      .filters {
+        float: left;
+        width: 20%;
+      }
+
+      .inventory {
+        margin-top: 1%;
+        box-sizing: border-box;
+        overflow: auto;
+        width: 79%;
+        float: right;
+      }
+
+      .inventory ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+
+      .inventory li {
+        margin-bottom: 5px;
+        padding: 5px;
+        float: left;
+      }
+
+      .inventory li span {
+        white-space: nowrap;
+      }
+
+      .inventory li:hover {
+        background-color: #687953;
+      }
+
+      .inventory li img {
+        float: left;
+        clear: both;
+        /* float: left; */
+      }
+
+      .inventory li span {
+        display: block;
+        margin-left: 40px;
+      }
+
+      .inventory_selector, .api_key {
+        overflow: auto;
+        float: right;
+      /* margin-left: 21%; */
+        width: 79%;
+      }
+
+      .inventory_selector ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+      }
+
+      .inventory_selector ul li {
+        float: left;
+        border: 2px solid #282f20;
+        margin-right: 5px;
+        padding: 1px;
+        cursor: pointer;
+      }
+
+      .inventory_selector ul li.active {
+        background-color: #687953;
+      }
+
+      .inventory_selector ul li:hover {
+        background-color: #687953;
+      }
+
+      .inventory_selector ul li.active:hover {
+        background-color: transparent;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="filters">
+      <h1>Filters</h1>
+      <input id="filter_input" type="text" placeholder="Filter string" />
+      <label id="incremental_filter_label">
+        <input id="incremental_filter" type="checkbox" checked="checked" />
+        Filter as you type (If disabled, press enter to refilter)
+      </label>
+
+      <h2>Examples (click them)</h2>
+      <ul>
+        <li id="example_filter_quality">Filter by quality</li>
+        <li id="example_filter_name">Filter by name</li>
+        <li id="example_filter_grade">Filter by grade</li>
+        <li id="example_filter_ecosystem">Filter by ecosystem</li>
+        <li id="example_filter_craft">Filter by craft use</li>
+        <li id="example_filter_combination">Filter by combination</li>
+        <li id="example_filter_priority">Armageddons priority materials</li>
+      </ul>
+
+      <h1>Advanced filters</h1>
+      Not yet done.
+    </div>
+
+    <div class="api_key">
+      <input id="api_key_input" type="text" placeholder="Full API key of your toon" />
+      <input id="load_inventory" type="button" value="Load inventory" />
+
+      Don't know your API key? Go to your <a href="https://secure.ryzom.com/payment_profile/account.php">account profile</a> and scroll down. Note: You need the Full key.
+      <div id="inventories_information">
+        Last update: <span class="last_update">Never</span> – Next update: <span class="next_update">Never</span>
+      </div>
+    </div>
+
+    <div class="inventory_selector">
+      <ul>
+        <li data-inventory="bag"  class="active" id="inventory_display_bag">Bag</li>
+        <li data-inventory="room" class="active" id="inventory_display_room">Apartment</li>
+        <li data-inventory="pet1" class="active" id="inventory_display_pet1">Animal 1</li>
+        <li data-inventory="pet2" class="active" id="inventory_display_pet2">Animal 2</li>
+        <li data-inventory="pet3" class="active" id="inventory_display_pet3">Animal 3</li>
+        <li data-inventory="pet4" class="active" id="inventory_display_pet4">Animal 4</li>
+      </ul>
+    </div>
+
+    <div class="inventory">
+      <ul>
+      </ul>
+    </div>
+  </body>
+</html>
